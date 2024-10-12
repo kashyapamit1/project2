@@ -1,0 +1,25 @@
+import sqlite3
+import tkinter as tk
+def amit():
+    name=Entry_name.get()
+    EMAILID=Entry_EMAILID.get()
+    connect=sqlite3.connect("email.db")
+    cursor=connect.cursor()
+    cursor.execute('''create table if not exists login1(name text,EMAILID integer_notnull)''')
+    cursor.execute('''insert into login1 (name,EMAILID)values(?,?)''',(name,EMAILID))
+    connect.commit()
+    connect.close()
+    #TKINTER
+root=tk.Tk()
+root.title("WELCOME TO THE HOTEL")
+Label_name=tk.Label(root,text="name")
+Label_name.pack()
+Entry_name=tk.Entry(root)
+Entry_name.pack()
+Label_EMAILID=tk.Label(root,text="EMAILID")
+Label_EMAILID.pack()
+Entry_EMAILID=tk.Entry(root)
+Entry_EMAILID.pack()
+submit_Button=tk.Button(root,text="SUBMIT",command=amit)
+submit_Button.pack()
+root.mainloop()
